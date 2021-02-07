@@ -30,7 +30,8 @@
 <br>
  MARS의 resnext50에서 pretrain model을 사용하였고, 바로 전 실험은 마지막 layer와 마지막 fc만 fine tuning 하여 실험하였습니다. 하지만 예전에 transfer learning 논문을 읽었을 때는 전체를 fine tuning 하는 것이 더 좋은 결과를 얻은 기록이 있어 이번 실험에는 전 실험과 전부 동일하지만, 전체 fine tuning을 하는 실험을 하였습니다. 결과는 예상에 맞게 **87.5%** 성능이 더 좋았습니다.<br>
 <br>
- baseline 코드와 MARS 코드는 3D-model이다. 하지만 3D-model은 2D-model보다 무겁다. 또한, 간단한 테스크이니 2D를 사용해도 성능이 좋게 나올 것 같아 2D-model로 구현하였습니다. 2D-model는 3D-model 데이터로더와 다르기 때문에 수정하였고, 각 영상 프레임 중 랜덤하게 1장만 가져와 classification 하도록 만들었습니다. 모델은 resnet50을 사용하였고, imagenet pretrain을 사용하였습니다. 결과는 최대 91.3%를 달성하여 3D-model보다 훨씬 좋은 성능을 내었습니다. 이 전에 tiny imagenet challenge에서 과도한 transform보단 간단한 transform이 좋았기 때문에 RandomHorizontalFlip, RandomRotation만 사용하였습니다. 나중에 RandomRotation은 성능이 나오지 않아 제거하였습니다. 이유는 데이터 셋에서 사람이 넘어지는 경우의 라벨이 5개중 3개가 있고, RandomRotation이 넘어진 것을 모호하게 만드는 것 같았다.
+ baseline 코드와 MARS 코드는 3D-model이다. 하지만 3D-model은 2D-model보다 무겁다. 또한, 간단한 테스크이니 2D를 사용해도 성능이 좋게 나올 것 같아 2D-model로 구현하였습니다. 2D-model는 3D-model 데이터로더와 다르기 때문에 수정하였고, 각 영상 프레임 중 랜덤하게 1장만 가져와 classification 하도록 만들었습니다. 모델은 resnet50을 사용하였고, imagenet pretrain을 사용하였습니다.<br>
+결과는 최대 **91.3%** 를 달성하여 3D-model보다 훨씬 좋은 성능을 내었습니다. 이 전에 tiny imagenet challenge에서 과도한 transform보단 간단한 transform이 좋았기 때문에 RandomHorizontalFlip, RandomRotation만 사용하였습니다. 나중에 RandomRotation은 성능이 나오지 않아 제거하였습니다. 이유는 데이터 셋에서 사람이 넘어지는 경우의 라벨이 5개중 3개가 있고, RandomRotation이 넘어진 것을 모호하게 만드는 것 같았다.<br>
 <br>
  train, test dataset을 분석하였더니 마지막 프레임(대략 30%)정도는 관련이 없는 이미지라고 판단하여 마지막 프레임(30%)를 제외하고 나머지 70%만 사용하는 실험을 하였지만 성능은 같거나 오히려 더욱 떨어졌습니다. 이로 인해 모델이 카메라의 구도도 학습한다고 생각이 들었습니다.<br>
 <br>
