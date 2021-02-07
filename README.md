@@ -6,7 +6,7 @@
 참조 : [http://aifactory.space/task/detail.do?taskId=T001632](http://aifactory.space/task/detail.do?taskId=T001632)
 
 ## 1. 이상행동 인식 알고리즘 개발
-### 1.1 배경
+### 1.1. 배경
  본 해커톤은 지하철 역사 안에 설치된 CCTV들의 영상을 활용하여 이상행동을 감지하고 객체를 추적하는 인공지능 시스템을 개발하는 프로젝트의 완성도를 높이고 널리 프로젝트의 성과를 홍보하기위해 실시하는 것입니다.<br>
  <br>
  대부분의 지하철 역사에서는 안전사고와 사회범죄를 예방하고, 교통약자를 지원하기 위해 CCTV가 활용되고 있습니다. 현재 역사내 운용중인 CCTV는 역무원에 의해 수동적으로 모니터링 되고 있으므로 상시 활용에 한계가 따릅니다. 따라서, 지하철 역사내 지능화된 CCTV를 통하여 안전사고를 예방하고, 사회 범죄를 조기에 감지하여 수요자에게 향상된 서비스를 제공하는 것을 목적으로 본 대회는 기획 되었습니다.<br>
@@ -17,12 +17,12 @@
 
 ## 2. 모델 개발 과정
  모델 개발 과정은 실험한 시간순으로 작성하였습니다.<br>
-### 2.1 Baseline model
+### 2.1. Baseline model
  먼저 주최 측에서 제공한 baseline 코드에는 3D-resnet(backbone)으로 구성되어있었고, 성능을 측정하고자 3D-resnet50, 3D-resnet101 둘 다 실험을 하였고 3D-resnet50이 **65%** 로 3D-resnet101보다 성능이 더 좋았습니다. 가벼운 테스크이다 보니 무거운 모델보다 가벼운 모델이 더 성능이 좋은 것 같습니다. lr, batch 등 hyperparameter은 실험할 때 loss, acc를 바탕으로 적용하였고 batch : 32, lr : 0.001로 픽스하였습니다.<br>
 <br>
  이후, 기본 성능을 바탕으로 여러 가지 실험을 하였습니다. 첫 번째는 모델을 바꾸어 측정해보았습니다. baseline 코드에서 backbone을 R(2+1)D으로 변경하고 실험을 하였습니다. 이는 선배의 조언으로 바꾸었고, 간단한 테스크에서 R(2+1)D 좋을 수도 있다 하여 실험하였습니다. 결과는 **66 ~ 68%** 로 기본 baseline 코드보단 좋았습니다.<br>
 <br>
-### 2.2 3D model
+### 2.2. 3D model
  다음은 backbone을 resnext로 변경하기 위해 노력하였습니다.<br>
 (데이터로더 부분이 오류인줄알고 print 찍어보고, 이상한 오류 창을 몇 번이나 검색하였는데 알고 보니 preprocess_data 코드가 문제였음(리턴하는 부분이 빠져있어서 이미지? 데이터가 텐서나 노말라이즈 하지 못해 오류였음)
 또한, 모델 fc부분에서 아웃풋 부분을 직접 모델 코드에서 변경하여 오류가 많았음(직접 건들지 말고 불러오는 코드로 건들자...))<br>
@@ -31,7 +31,7 @@
 <br>
  MARS의 resnext50에서 pretrain model을 사용하였고, 바로 전 실험은 마지막 layer와 마지막 fc만 fine tuning 하여 실험하였습니다. 하지만 예전에 transfer learning 논문을 읽었을 때는 전체를 fine tuning 하는 것이 더 좋은 결과를 얻은 기록이 있어 이번 실험에는 전 실험과 전부 동일하지만, 전체 fine tuning을 하는 실험을 하였습니다. 결과는 예상에 맞게 **87.5%** 성능이 더 좋았습니다.<br>
 <br>
-### 2.3 2D model
+### 2.3. 2D model
  baseline 코드와 MARS 코드는 3D-model이다. 하지만 3D-model은 2D-model보다 무겁다. 또한, 간단한 테스크이니 2D를 사용해도 성능이 좋게 나올 것 같아 2D-model로 구현하였습니다. 2D-model는 3D-model 데이터로더와 다르기 때문에 수정하였고, 각 영상 프레임 중 랜덤하게 1장만 가져와 classification 하도록 만들었습니다. 모델은 resnet50을 사용하였고, imagenet pretrain을 사용하였습니다.<br>
 결과는 최대 **91.3%** 를 달성하여 3D-model보다 훨씬 좋은 성능을 내었습니다. 이 전에 tiny imagenet challenge에서 과도한 transform보단 간단한 transform이 좋았기 때문에 RandomHorizontalFlip, RandomRotation만 사용하였습니다. 나중에 RandomRotation은 성능이 나오지 않아 제거하였습니다. 이유는 데이터 셋에서 사람이 넘어지는 경우의 라벨이 5개중 3개가 있고, RandomRotation이 넘어진 것을 모호하게 만드는 것 같았다.<br>
 <br>
