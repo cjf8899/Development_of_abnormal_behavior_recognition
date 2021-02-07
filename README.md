@@ -46,4 +46,4 @@
 <br>
  마지막으로 batch, lr, image size 등 hyperparameter를 적절히 조정하여 최고성능인 **97.5%** 를 달성하였다.<br>
  
- <p align="center"><img src="https://user-images.githubusercontent.com/53032349/107150378-dbe78880-69a0-11eb-93bc-3d98a22ecad3.PNG" width="60%" height="60%" title="70px" alt="memoryblock"></p>
+ <p align="left"><img src="https://user-images.githubusercontent.com/53032349/107150378-dbe78880-69a0-11eb-93bc-3d98a22ecad3.PNG" width="70%" height="70%" title="70px" alt="memoryblock"></p>
