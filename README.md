@@ -33,7 +33,7 @@
 <br>
 ### 2.3. 2D model
  baseline 코드와 MARS 코드는 3D-model이다. 하지만 3D-model은 2D-model보다 무겁다. 또한, 간단한 테스크이니 2D를 사용해도 성능이 좋게 나올 것 같아 2D-model로 구현하였습니다. 2D-model는 3D-model 데이터로더와 다르기 때문에 수정하였고, 각 영상 프레임 중 랜덤하게 1장만 가져와 classification 하도록 만들었습니다. 모델은 resnet50을 사용하였고, imagenet pretrain을 사용하였습니다.<br>
-결과는 최대 **91.3%** 를 달성하여 3D-model보다 훨씬 좋은 성능을 내었습니다. 이 전에 tiny imagenet challenge에서 과도한 transform보단 간단한 transform이 좋았기 때문에 RandomHorizontalFlip, RandomRotation만 사용하였습니다. 나중에 RandomRotation은 성능이 나오지 않아 제거하였습니다. 이유는 데이터 셋에서 사람이 넘어지는 경우의 라벨이 5개중 3개가 있고, RandomRotation이 넘어진 것을 모호하게 만드는 것 같았다.<br>
+결과는 최대 **91.3% 를 달성하여 3D-model보다 훨씬 좋은 성능을 내었습니다. 이 전에 tiny imagenet challenge에서 과도한 transform보단 간단한 transform이 좋았기 때문에 RandomHorizontalFlip, RandomRotation만 사용하였습니다. 나중에 RandomRotation은 성능이 나오지 않아 제거하였습니다. 이유는 데이터 셋에서 사람이 넘어지는 경우의 라벨이 5개중 3개가 있고, RandomRotation이 넘어진 것을 모호하게 만드는 것 같았다.<br>
 
 <p align="center"><img src="https://user-images.githubusercontent.com/53032349/107150249-43e99f00-69a0-11eb-90a8-0b0b21645ce0.PNG" width="80%" height="80%" title="70px" alt="memoryblock"></p>
 
