@@ -45,3 +45,5 @@
  3D-model에서는 이미지사이즈를 112로 고정시켜 2D-model에서도 112를 고정시켰지만 224, 448로 늘려감에 따라 실험하였고 **93%, 95.8%** 을 달성하였다. resnet50에서 다른 네트워크로 변경한 실험도 진행하였지만 성능이 비슷하거나 안 좋았다. <br>
 <br>
  마지막으로 batch, lr, image size 등 hyperparameter를 적절히 조정하여 최고성능인 **97.5%** 를 달성하였다.<br>
+ 
+ <p align="center"><img src="https://user-images.githubusercontent.com/53032349/107150378-dbe78880-69a0-11eb-93bc-3d98a22ecad3.PNG" width="60%" height="60%" title="70px" alt="memoryblock"></p>
