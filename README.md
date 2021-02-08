@@ -55,5 +55,5 @@
   
   or
   
-  train3d.py --modality RGB --split 1 --only_RGB --n_classes 400 --n_finetune_classes 5 --batch_size 32 --log 1 --sample_duration 64 --model resnext --model_depth 101 --ft_begin_index 0  --result_path "results/" --n_workers 8 --n_epochs 100 --learning_rate 0.01
+  python train3d.py --modality RGB --split 1 --only_RGB --n_classes 400 --n_finetune_classes 5 --batch_size 32 --log 1 --sample_duration 64 --model resnext --model_depth 101 --ft_begin_index 0  --result_path "results/" --n_workers 8 --n_epochs 100 --learning_rate 0.01
  ```
