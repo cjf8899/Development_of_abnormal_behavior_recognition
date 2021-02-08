@@ -32,9 +32,9 @@ def get_cctv(opt, frame_path, Total_frames):
 class CCTV_loader(Dataset):
     def __init__(self, train, opt):
         if train == 1:
-            self.clips = glob.glob('/workspace/final_mars/MARS/dataset/action/dataset/train/*/*')
+            self.clips = glob.glob('/workspace/data/train/*/*')
         else:
-            self.clips = glob.glob('/workspace/final_mars/MARS/dataset/action/dataset/test/*/*')
+            self.clips = glob.glob('/workspace/data/test/*/*')
             self.clips.sort()
         self.opt = opt
         self.train_val_test = train
@@ -43,10 +43,10 @@ class CCTV_loader(Dataset):
         return len(self.clips)
     def __getitem__(self, idx):
         path = self.clips[idx]
-        label = path.split('/')[8]
+        label = path.split('/')[4]
         
         if self.train != 1:
-            label_name = path.split('/')[9]
+            label_name = path.split('/')[5]
         else:
             label_name=0
             
