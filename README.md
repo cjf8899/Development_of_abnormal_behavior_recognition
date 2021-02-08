@@ -49,7 +49,7 @@
  <p align="center"><img src="https://user-images.githubusercontent.com/53032349/107150378-dbe78880-69a0-11eb-93bc-3d98a22ecad3.PNG" width="70%" height="70%" title="70px" alt="memoryblock"></p>
  
  ## 성능 재현
- 다음과 같은 프로세스를 통해 모델성능을 재현할 수 있습니다. 2D-model은 torchvision.models 를 사용하였기 때문에 pretrained model이 필요없지만, 3D-model은 필요하기 때문에 성능 재현에 유의하십시오.<br>
+ 다음과 같은 프로세스를 통해 모델성능을 재현할 수 있습니다. 2D-model은 torchvision.models 를 사용하였기 때문에 따로 pretrained model이 필요없지만, 3D-model은 필요하기 때문에 성능 재현에 유의하십시오.<br>
  ```Shell
   python train2d.py --modality RGB --split 1 --only_RGB --n_classes 400 --n_finetune_classes 5 --batch_size 32 --log 1 --sample_duration 64 --model resnet --model_depth 50 --ft_begin_index 0  --result_path "results/" --n_workers 8 --n_epochs 100 --learning_rate 0.01
   
