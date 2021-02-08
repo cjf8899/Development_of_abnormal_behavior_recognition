@@ -47,4 +47,3 @@
  마지막으로 batch, lr, image size 등 hyperparameter를 적절히 조정하여 최고 성능인 **97.5%** 를 달성하였다.<br>
  <br>
  <p align="center"><img src="https://user-images.githubusercontent.com/53032349/107150378-dbe78880-69a0-11eb-93bc-3d98a22ecad3.PNG" width="70%" height="70%" title="70px" alt="memoryblock"></p>
-저는 2021.01.25. ~ 2021.02.05. 까지 과학기술정통부, 한국정보화진흥원이 주최한 <지하철역 CCTV 영상을 이용한 이상행동 인식> 참가하여 테스트 셋 **97.5%** 성능을 달성하였습니다.<br>
